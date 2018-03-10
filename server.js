@@ -41,8 +41,8 @@ var app = express();
 app.set('views',  __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || config.server_port || 3000);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.server_port || 3000);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_PORT || '127.0.0.1');
 
 app.use(bodyParser.urlencoded({extend:false}));
 app.use(bodyParser.json());
