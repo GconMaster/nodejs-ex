@@ -2,7 +2,7 @@
   "name": "renewal_robotics_page",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^1.0.0-alpha.2",
     "body-parser": "^1.18.2",
@@ -25,9 +25,7 @@
     "serve-static": "^1.13.2"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC"
 }
