@@ -1,6 +1,8 @@
+var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost:27017/local'
+
 module.exports = {
-    server_port:3000,
-    db_url:'mongodb://localhost:27017/local',
+    server_port:8080,
+    db_url:connectionString,
     db_schemas: [
         {file:'./schema/user', collection:'Users', schemaName:'UserSchema', modelName:'UserModel'},
         {file:'./schema/board', collection:'Board', schemaName:'BoardSchema', modelName: 'BoardModel'}
