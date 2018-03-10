@@ -1,0 +1,22 @@
+.footer-wrap {
+    position: relative;
+    background-color: darkgray;
+    height: 200px;
+    width: 100%;
+    
+}
+
+.footer {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.footer-content {
+    margin: auto;
+    text-align: middle;
+    
+    height: 100%;
+}

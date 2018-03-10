@@ -1,0 +1,52 @@
+.container {
+    min-width: 900px;
+}
+.content-body {
+    width: 70%;
+    margin: auto;
+    margin-top: 3.5em;
+}
+
+.form-table {
+    width: 100%;
+}
+
+.form-tbody tr {
+    border-bottom: 1px solid darkgray;
+}
+
+.form-tr-1 {
+    border-top: 1px solid darkgray;
+}
+
+.form-th {
+    padding: none;
+    padding-right: 3em;
+    
+}
+
+.form-th label {
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.form-th i {
+    display: none;
+}
+
+.form-td .short {
+    width: 40%;
+}
+
+.form-td {
+    padding: 1em 1em;
+    width: 70%;
+}
+
+
+
+.btn-signup {
+    margin-top: 2em;
+    margin-right: 16px;
+    float: right;
+}

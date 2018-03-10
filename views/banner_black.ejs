@@ -1,0 +1,149 @@
+
+<script>
+    $(document).ready(function(){
+    $("a.submit").click(function(){
+        document.getElementById("listpostform").submit();
+    }); 
+});
+</script>
+
+<div class="main-banner " >
+    <nav class="nav-style nav-banner">
+        <ul class="nav justify-content-end nav-info-box">
+            <% if (login_success) { %>
+                <li class="nav-info-item nav-text">
+                    <% if (user.provider == undefined || user.provider == '') { %>
+                    <span class="nav-info"> <%= user.name %> </span>
+                    <% } %>
+                </li>
+                <li class="nav-info-item nav-text">
+                    <span class="nav-info">|</span>
+                </li>
+                <li class="nav-info-item nav-text">
+                    <a href="/logout" class="nav-info" >Log out</a>
+                </li>
+            <% } else { %>
+                <li class="nav-info-item nav-text">
+                    <a class="nav-info text" data-toggle="modal" data-target="#Modal-login">Log in</a>
+                </li>
+                <li class="nav-info-item nav-text">
+                    <span class="nav-info">|</span>
+                </li>
+                <li class="nav-info-item nav-text">
+                    <a class="nav-info" href="/signup">Sign up</a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+    <header class="nav header-style justify-content-center ">
+        <img class="nav-logo" src="/public/image/Robotics_logo.png" alt="Robotics">
+    </header>
+    <nav class="nav-style nav-banner">
+        <ul class="nav justify-content-center">
+            <li class="nav-item nav-text">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">About</a>
+                <ul class= "nav-submenu">
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link" href="/about">소개</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link" href="/rule">회칙</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link" href="/history">연혁</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">Member</a>
+                <ul class= "nav-submenu">
+                    <li class="nav-item submenu-text">
+                        <form id="listpostform" method="post" action="/listpost">
+                            <a class="submenu-link submit">공지사항</a>
+                            <input type="hidden" name = "page" value="0">
+                            <input type="hidden" name = "perPage" value="20">
+                        </form>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link" href="/members">회원명단</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">회의록</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">회원게시판</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">시작보고서</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">Community</a>
+                <ul class= "nav-submenu">
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">자유게시판</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">대회안내</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">질문 & 답변</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">사진</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">작품 사진</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">PDS</a>
+                <ul class= "nav-submenu">
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">소프트웨어</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">데이타쉬트</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">세미나</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">회로</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">문서</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">CAFE</a>
+                <ul class= "nav-submenu">
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">지능형 자동차</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">로봇축구</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">JAVA 프로그래밍</a>
+                    </li>
+                    <li class="nav-item submenu-text">
+                        <a class="submenu-link">R.G.B</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">Site Link</a>
+            </li>
+            <li class="nav-item nav-text">
+                <a class="nav-link">Blog</a>
+            </li>
+        </ul>
+    </nav>    
+</div>

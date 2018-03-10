@@ -1,0 +1,15 @@
+.content-body {
+    margin-top: 3.5em;
+    width: 100%;
+}
+
+.content-body img {
+    display: block;
+    margin: auto;
+}
+
+.content-body audio {
+    display: block;
+    margin: auto;
+    margin-top: 2em;
+}

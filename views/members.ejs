@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/public/css/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/banner_white.css">
+        <link rel="stylesheet" href="/public/css/members.css">
+        <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <title>숭실대학교 로보틱스 Re-newal Beta 0.0.1</title>
+    </head>
+    <body>
+        <div class="wrapper" style="min-height: calc(90vh - 200px);">
+            <% include ./banner_white.ejs %>
+            <div class="container" >
+                <div class="content-head" >
+                    <h1> 로보틱스 회원명단</h1>
+                </div>        
+                    <div class="content-body">
+                        <table class="table table-striped">
+                            <thead class="thead-default">
+                                <tr class="member-head">
+                                    <th></th>
+                                    <th>
+                                        이름
+                                    </th>
+                                    <th>
+                                        기수
+                                    </th>
+                                    <th>
+                                        이메일
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% 
+                                for (var i = 0; i < results.length; i++) {
+                                    var curId = results[i]._doc.email;
+                                    var curName = results[i]._doc.name;
+                                    var curTh = results[i]._doc.th_num;
+                            %>
+                                <tr class="member-data">
+                                    <th scope="row"></th>
+                                    <td>
+                                        <%=curName %>
+                                    </td>
+                                    <td>
+                                        <%=curTh %>
+                                    </td>
+                                    <td>
+                                        <%=curId %>
+                                    </td>
+                                </tr>
+
+                            <%
+                                } 
+                            %>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        
+        </div>
+           
+        <% include ./footer.ejs %>
+    </body>
+</html>

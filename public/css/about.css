@@ -1,0 +1,10 @@
+.content-body {
+    margin-top: 3.5em;
+    width: 100%;
+}
+
+.content-body img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2em;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/public/css/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/banner_white.css">
+        <link rel="stylesheet" href="/public/css/addpost.css">
+        
+        <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
+		<script>
+			$(document).ready(function() {
+				CKEDITOR.replace('contents', 
+                               {
+                                    height: '500px'
+                                });
+                CKEDITOR.editorConfig = function(config) {
+                    config.resize_minWidth = 700;
+                    config.resize_minHeight = 500;
+                    config.resize_dir = 'vertical';
+                };
+			});
+            
+			
+		</script>
+	</head>
+    <body>
+        <div class="wrapper" style="min-height: calc(90vh - 200px);">
+            <% include ./banner_white.ejs %>
+            <div class="container">
+            <div class="content-head" >
+                    <h1> 로보틱스 공지사항</h1>
+            </div>  
+            <div class="content-body">
+                    <form method="post" action="/addpost">
+                        <div class="form-head">
+                            <input type="text" name="title" placeholder="제목">
+                        </div>
+                        <div class="form-textarea">
+                            <textarea id="contents" name="contents" rows="100" cols="800"></textarea>
+                        </div>		
+                        <div class="form-btn">
+                            <input class="btn btn-dark" type="submit" value="추가" name="" />
+                            <input class="btn btn-dark" type="button" value="취소" name="" onclick="javascript:history.back()" />
+                            <div style="clear: both;"></div>
+                        </div>    
+                    </form>					
+            </div>
+        </div>
+        </div>
+        <% include ./footer.ejs %>
+    </body>
+</html>

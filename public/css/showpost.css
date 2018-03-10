@@ -1,0 +1,67 @@
+.content-body {
+    margin-top: 1.5em;
+    width: 100%;
+}
+
+.content-title {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+
+}
+
+.content-title h2 {
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+
+}
+
+.content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow-wrap: break-word;
+    margin-top: 1em;
+    padding-left: 20px;
+    border-bottom: 1px solid darkgray;
+    
+}
+
+.comment-list {
+    border-bottom: 1px solid darkgray;
+}
+.list {
+    margin-top: 20px;
+    margin-right: 16px;
+    float: right;
+}
+
+.form-input {
+
+}
+.form-comment {
+    width: 80%;
+    float: left;
+}
+.add-comment {
+    margin-top: 2em;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 2em;
+    padding-left: 16px;
+}
+
+.content-comment .submit {
+    width: 10%;
+    margin-right: 16px;
+    float: right;
+}
+
+.Comment-Date {
+    float: right;
+}
+
+.Comment-Writer {
+    float: left;
+}

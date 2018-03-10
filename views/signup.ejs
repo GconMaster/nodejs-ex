@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/public/css/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/banner_white.css">
+        <link rel="stylesheet" href="/public/css/signup.css">
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <title>숭실대학교 로보틱스 Re-newal Beta 0.0.1</title>
+        <script>
+             $(function(){
+              $('#pwd').keyup(function(){
+               $('i[name=check]').hide();
+              });
+
+              $('#pwd-check').keyup(function(){
+               if($('#pwd').val()!=$('#pwd-check').val()){
+                $('i[name=check]').hide();
+               }else{
+                $('i[name=check]').show();
+               }
+              }); //#chpass.keyup
+             });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper" style="min-height: calc(90vh - 200px);">
+        <% include ./banner_white.ejs %>
+        
+            <div class="container" >
+                <div class="content-head" >
+                    <h1> 회원가입</h1>
+                </div>
+                <div class="content-body">
+                    <!-- 인증 처리 후 메시지가 있으면 메시지 표시 -->
+                    <% if (message.length > 0) { %>
+                        <div class="alert alert-danger"><%= message %></div>
+                    <% } %>
+                    <form action="/signup" method="post" >
+                        <table class= "form-table">
+                            <tbody class="form-tbody">
+                                <tr class="form-tr-1">
+                                    <th class="form-th">
+                                        <label>이메일</label>
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="email" class="form-control" name="email" required>
+                                    </td>
+                                </tr>
+                                <tr class="form-tr">
+                                    <th class="form-th">
+                                        <label>닉네임</label>
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="text" class="form-control" name="name" required>
+                                    </td>
+                                </tr>
+                                <tr class="form-tr">
+                                    <th class="form-th">
+                                        <label>비밀번호</label>
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="password" class="form-control" name="password" id="pwd" required>
+                                    </td>
+                                </tr>
+                                <tr class="form-tr">
+                                    <th class="form-th">
+                                        <label>비밀번호 확인</label>
+                                        <i class="fas fa-check-circle" name="check"></i> 
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="password" class="form-control" name="password-check" id="pwd-check" required>
+
+                                    </td>
+                                </tr>
+                                <tr class="form-tr">
+                                    <th class="form-th">
+                                        <label>기수</label>
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="number" class="form-control short" name="th_num" min=1 required>
+                                    </td>
+                                </tr>
+                                <tr class="form-tr">
+                                    <th class="form-th">
+                                        <label>동아리방 와이파이 비밀번호</label>
+                                    </th>
+                                    <td class="form-td">
+                                        <input type="text" class="form-control short" name="rotic_wifi" required>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table>
+                        <div class="signup">
+                            <button type="submit" class="btn btn-warning btn-lg btn-signup">회원가입</button>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% include ./footer.ejs %>
+    </body>
+</html>

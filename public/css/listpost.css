@@ -1,0 +1,61 @@
+
+
+.content-body {
+    margin-top: 3.5em;
+    width: 100%;
+    border-top: 1px solid darkgray;
+}
+
+.content-body .item {
+    border-bottom: 1px solid darkgray;
+}
+
+
+.Page-btn-group {
+    position: relative;
+    height: 38px;
+}
+
+
+.pagination {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+table {
+    table-layout: fixed;
+}
+
+.tr-num {
+    width: 10%;
+}
+
+.tr-title {
+    width: 65%;
+}
+div .item-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor:pointer;
+}
+
+.tr-date {
+    width: 15%;
+}
+
+.tr-cnt {
+    width: 10%;
+}
+
+.write-btn {
+    float:right;
+}
+
+.content-comment {
+    position: relative;
+    z-index: 2;
+}

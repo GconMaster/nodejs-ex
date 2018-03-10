@@ -1,0 +1,32 @@
+.content-body {
+    margin-top: 3.5em;
+    width: 100%;
+}
+
+.form-head input {
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+
+.form-textarea {
+    width: 100%;
+}
+
+.form-textarea {
+    position: relative;
+    z-index: 2;
+}
+
+.form-btn {
+    margin-top: 2em;
+}
+
+.form-btn input {
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-right: 1em;
+    float: right;
+    
+    
+}

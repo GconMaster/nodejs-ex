@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>글 조회 페이지</title>
+        <link rel="stylesheet" href="/public/css/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/banner_white.css">
+        <link rel="stylesheet" href="/public/css/showpost.css">
+        <link rel="stylesheet" href="/public/css/jquery.cleditor.css">
+        <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="/public/js/jquery.cleditor.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+		<title>숭실대학교 로보틱스 Re-newal Beta 0.0.1</title>
+        <script>
+			$(document).ready(function() {
+				var output = $("#contentsOutput").text();
+				$("#contentsOutput").html(output);
+                 CKEDITOR.replace( 'contents', { height:'100px'}); 
+                <%  
+                  for (var i = 0; i < posts._doc.comments.length; i++) { 
+                %>
+                    var comment_output = $("#commentsOutput_<%=i%>").text();
+                    $("#commentsOutput_<%=i%>").html(comment_output);
+                <% } %>
+			});
+		</script>   
+	</head>
+	<body>
+        <div class="wrapper" style="min-height: calc(90vh - 200px);">
+           <% include ./banner_white.ejs %>
+            <% var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+               var curTitle = posts._doc.title;
+               var curContents = posts._doc.contents;
+               var curWriter = posts._doc.writer.email; 
+               var curDay = (new Date(posts._doc.created_at - tzoffset)).toISOString().split('T')[0];
+                var curTime = (new Date(posts._doc.created_at - tzoffset)).toISOString().split('T')[1].split('.')[0];
+                var curId = posts._doc._id;
+               // html-entities module is required in board.js
+               var entities = new Entities();
+
+               var decodedContents = entities.decode(curContents);
+            %>
+          <div class="container">
+              <div class="content-head">
+                        <h1> 로보틱스 공지사항</h1>
+                </div>  
+                <div class="content-body">
+                    <div class="content-title">
+                        <h2><%=curTitle %></h2>
+                        <h6><%=curDay %> <%=curTime%></h6>
+                    </div>
+                    <div class="content">
+
+                        <div id="contentsOutput" class="description">
+                               <%=decodedContents %>
+                        </div>
+
+                    </div>
+                    <div class="comment-list">
+                        <div class="add-comment">
+                            <form class="content-comment" method="post" action="/addcomment">
+                                <div class="form-comment">
+                                    <textarea class="form-input" id="contents" name="contents" placeholder="댓글내용 입력"></textarea>
+                                </div>
+                                <input hidden type="text" name="id" value="<%=curId %>">
+                                <input class="submit btn" type="submit" value="댓글 추가" name="" />
+                                <div style="clear:both;"></div>
+                            </form>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                        <%  
+                            
+                            for (var i = 0; i < posts._doc.comments.length; i++) {
+                               var curCommentContents = posts._doc.comments[i].contents;
+                               var curCommentWriter = posts._doc.comments[i].writer;
+                                var curDay = (new Date(posts._doc.comments[i].created_at - tzoffset)).toISOString().split('T')[0];
+                                var curTime = (new Date(posts._doc.comments[i].created_at - tzoffset)).toISOString().split('T')[1].split('.')[0];
+                                var curDate = curDay + ' ' + curTime;
+                                if(!curCommentWriter) {
+                                    curCommentWriter = 'undefined';
+                                }
+                                
+                               %>
+                            
+                              <li class="list-group-item">
+                                      <h6 class="Comment-Writer"><%=curCommentWriter.name %></h6>
+                                      <h6 class="Comment-Date"><%=curDate %></h6>
+                                    <div style="clear: both;"></div>  
+                                  <div id="commentsOutput_<%=i%>">
+                                        <%=curCommentContents %>  
+                                  </div>
+                                </li>
+                        <% } %>	           
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <a class="btn btn-warning btn-lg list" href='/listpost'>목록</a>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+        <% include ./footer.ejs %>
+        
+	</body>
+            
+        
+        
+	</body>
+    
+</html>
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/public/css/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/banner_white.css">
+        <link rel="stylesheet" href="/public/css/listpost.css">
+        <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+			function listpost(page, perPage) {
+				document.location = '/listpost?page=' + page + '&perPage=' + perPage;
+			}
+		</script>
+		
+	</head>
+	<body>
+        <div class="wrapper" style="min-height: calc(90vh - 200px);">
+        <% include ./banner_white.ejs %>
+        <div class="container">
+            <div class="content-head" >
+                    <h1> 로보틱스 공지사항</h1>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-hover content-body">
+                <thead>
+                    <th class="tr-num">
+                            번호
+                    </th>
+                    <th class="tr-title">
+                            제목
+                    </th>
+                    <th class="tr-date">
+                            날짜
+                    </th>
+                    <th class="tr-cnt">
+                            조회수
+                    </th>
+                </thead>
+                <tbody>
+                <%  var noStart = (pageCount - page) * perPage;
+                    var tzoffset = (new Date()).getTimezoneOffset() * 60000;
+                    for (var i = 0; i < posts.length; i++) {
+                       var curTitle = posts[i]._doc.title;
+                       var curContents = posts[i]._doc.contents;
+                       var curWriter = posts[i]._doc.writer.name;
+                        var curHits = posts[i]._doc.hits;  
+                       var curDay = (new Date(posts[i]._doc.created_at - tzoffset)).toISOString().split('T')[0];
+                       var curNo = noStart - i;
+                %>
+                    
+                <tr>
+                    
+                        <th class="tr-num">
+                            <%=curNo %>
+                        </th>
+                        <th class="tr-title">
+                            <div class="item-content" onclick="javascript:window.location='/showpost/<%=posts[i]._id %>'">
+                                <%=curTitle %>
+                            </div>
+                        </th>
+                        <th class="tr-date">
+                            <div>
+                                    <%=curDay %>
+                            </div>
+                        </th>
+                        <th class="tr-cnt">
+                            <div>
+                                    <%=curHits %>
+                            </div>
+                        </th>
+                    
+                   
+                </tr>
+                <% } %>	
+                </tbody>
+            </table>
+            	 </div>
+            <div>
+            <nav class="Page Page-btn-group">
+                <ul class="pagination">
+                <%
+                    if (page > 0) {
+                %>      
+                        <li class="page-item">
+                            <div class="page-link" onclick="listpost(0, <%=perPage %>)">
+                                <span aria-hidden="true">&lt;&lt;</span>
+        <span class="sr-only">Previous</span>
+                            </div>
+                        </li>
+                        
+                        <li class="page-item">
+                            <div class="page-link" onclick="listpost(<%=(page-1) %>, <%=perPage %>)">
+                                <span aria-hidden="true">&lt;</span>
+        <span class="sr-only">Previous</span>
+                            </div>
+                        </li>
+                <%
+                    } else {
+                %>
+                            <li class="page-item disabled">
+                                <div class="page-link">
+                                    <span aria-hidden="true">&lt;&lt;</span>
+                                    <span class="sr-only">Previous</span>
+                                </div>
+                            </li>
+                            <li class="page-item disabled">
+                                <div class="page-link">
+                                    <span aria-hidden="true">&lt;</span>
+                                    <span class="sr-only">Previous</span>
+                                </div>
+                            </li>
+                    
+                    
+                <%
+                    }
+                %>
+                <% 
+                    var initial = Math.floor(page / 10) * 10;
+                    console.log('initial : ' + initial);
+
+                    var max = pageCount - initial;
+                    if (max > 10) {
+                        max = initial + 10;
+                    } else {
+                        max = initial + max;
+                    }
+                    console.log('max : ' + max);
+
+                    for (var i = initial; i < max; i++) {
+                        if (i != page) {
+                %>          <li class="page-item">
+                                <div class="page-link" onclick="listpost(<%=i %>, <%=perPage %>)">
+                                    <%= i %>
+                                </div>
+                            </li>
+                <%
+                        } else {
+                %>
+                            <li class="page-item active">
+                                <div class="page-link">
+                                    <%= i %>
+                                </div>
+                            </li>
+                <% 
+                        }
+                    }
+                %>
+                <%
+                    if ((page+1) < pageCount) {
+                %>
+                    
+                        <li class="page-item">
+                            <div class="page-link" onclick="listpost(<%=(page+1) %>, <%=perPage %>)">
+                                <span aria-hidden="true">&gt;</span>
+                                <span class="sr-only">Next</span>
+                            </div>
+                        </li>
+                        <li class="page-item">
+                            <div class="page-link" onclick="listpost(<%=(pageCount-1) %>, <%=perPage %>)">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                                <span class="sr-only">Next</span>
+                            </div>
+                        </li>
+                <%
+                    } else {
+                %>
+                        <li class="page-item disabled">
+                            <div class="page-link ">
+                                <span aria-hidden="true">&gt;</span>
+                                <span class="sr-only">Next</span>
+                            </div>
+                        </li>
+                        <li class="page-item disabled">
+                            <div class="page-link">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                                <span class="sr-only">Next</span>
+                            </div>
+                        </li>
+                <%
+                    }
+                %>
+                </ul>
+            </nav>
+            </div>
+            <div class="write">
+                <% if (login_success) { %>
+                    <a class="btn btn-warning btn-lg write-btn" href='/addpost'>글쓰기</a>
+                <% } %>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        </div>
+        <% include ./footer.ejs %>
+	</body>
+</html>
+

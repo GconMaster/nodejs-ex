@@ -1,0 +1,19 @@
+.content-body {
+    margin-top: 3.5em;
+    width: 100%;
+}
+
+.member-table {
+    width: 100%;
+    
+}
+
+.member-head th {
+    text-align: center;
+}
+
+.member-data td {
+    text-align: center;
+}
+
+
