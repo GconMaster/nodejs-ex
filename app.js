@@ -41,7 +41,8 @@ var app = express();
 app.set('views',  __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.set('port', config.server_port || 3000);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || config.server_port || 3000);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
 app.use(bodyParser.urlencoded({extend:false}));
 app.use(bodyParser.json());
@@ -104,7 +105,7 @@ app.on('close', function () {
 });
 
 
-var server = http.createServer(app).listen(app.get('port'), function() {
+var server = http.createServer(app).listen(app.get('port'), app.get('ip'), function() {
     console.log('익스프레스로 웹서버 구동 시작 -> PORT : ' + app.get('port'));
     
     database_loader.init(app);
