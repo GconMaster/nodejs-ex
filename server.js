@@ -88,15 +88,6 @@ var errorHandler = expressErrorHandler({
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
 
-
-
-
-// 프로세스 종료 시에 데이터베이스 연결 해제
-process.on('SIGTERM', function () {
-    console.log("프로세스가 종료됩니다.");
-    app.close();
-});
-
 app.on('close', function () {
 	console.log("Express 서버 객체가 종료됩니다.");
 	if (database_loader.db) {
